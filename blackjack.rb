@@ -1,11 +1,27 @@
 class Blackjack
-  def initialize
+  def initialize(number_of_players)
     @deck = Deck.new
     shuffle_deck
+    @players = [Player.new(true, false)]
+    (1..number_of_players).each {|player| Player.new(false, false)}
+    until @players.all?{|player| player.status == 'bust' || player.status == 'stuck'}
+      @players.each{|player| move(player) unless player.status == 'bust' }
+    end
+    #unfinished, just prints end scores
+    p 'Game finished'
+    @players.each{|player| p 'score: ' + player.status.to_s }
   end
 
   def deck
     @deck
+  end
+
+  def move(player)
+    case player.take_turn
+    when 'stick'
+    when 'twist'
+      player.twist(@deck.draw)
+    end
   end
 
   def shuffle_deck
@@ -26,6 +42,10 @@ class Deck
     @cards.pop or raise EmptyDeckException
   end
 
+  def twist(card)
+    @cards << card
+  end
+
   def cards
     @cards
   end
@@ -40,7 +60,7 @@ class Deck
 
   def show_cards
     card_list = []
-    @cards.each {|card| card_list << card.suit.to_s + card.value.to_s}
+    @cards.each {|card| card_list << card.suit.to_s + ';' + card.value.to_s}
     card_list
   end
 end
@@ -49,17 +69,62 @@ class EmptyDeckException < Exception
 end
 
 class Card
+  attr_reader :value
+
   def initialize(suit, value)
     @suit = suit
-    @value = value
+    @value = value.to_i
   end
 
   def suit
     @suit
   end
+end
 
-  def value
-    @value
+class Player
+  attr_reader :status
+
+  def initialize(is_house, is_human)
+    @is_house = is_house
+    @is_human = is_human
+    @status = 'ingame'
+    @hand = []
+  end
+
+  def stick
+    @status = 'stuck'
+  end
+
+  def twist(card)
+    @hand << card
+  end
+
+  def is_house?
+    @is_house
+  end
+
+  #in progress
+  def bust?
+    p 'winning value' + @hand.inject(0){|sum,x|}.to_s
+    p @hand.inject(0){|sum,x| sum+x.value} >= 21
+    p @hand.inject(0){|sum,x| sum+x.value} >= 21
+  end
+
+  def take_turn
+    if @is_human
+      case gets
+      when "Stick\n","stick\n","S\n","s\n"
+        'stick'
+      when "Twist\n","twist\n","T\n","t\n"
+        'twist'
+      else
+        p "Couldn't interpret move"
+      end
+    else
+      p 'hand: ' + @hand.to_s
+      'twist' unless won?
+    end
   end
 end
 
+Blackjack.new(2)
