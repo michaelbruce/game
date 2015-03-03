@@ -3,17 +3,24 @@ class Blackjack
     @deck = Deck.new
     shuffle_deck
     @players = [Player.new(true, false)]
-    (1..number_of_players).each {|player| Player.new(false, false)}
-    until @players.all?{|player| player.status == 'bust' || player.status == 'stuck'}
-      @players.each{|player| move(player) unless player.status == 'bust' }
-    end
-    #unfinished, just prints end scores
-    p 'Game finished'
-    @players.each{|player| p 'score: ' + player.status.to_s }
+    (1..number_of_players).each {|player| @players << Player.new(false, false)}
   end
 
   def deck
     @deck
+  end
+
+  def play_round
+    @players.each{|player| move(player) unless player.status == 'bust' }
+  end
+
+  def play_all_rounds
+    play_round until @players.all?{|player| player.status == 'bust' || player.status == 'stuck'}
+  end
+
+  def end_game
+    p 'Game finished'
+    @players.each{|player| p 'score: ' + player.status.to_s }
   end
 
   def move(player)
@@ -103,11 +110,8 @@ class Player
     @is_house
   end
 
-  #in progress
   def bust?
-    p 'winning value' + @hand.inject(0){|sum,x|}.to_s
-    p @hand.inject(0){|sum,x| sum+x.value} >= 21
-    p @hand.inject(0){|sum,x| sum+x.value} >= 21
+    @hand.inject(0){|sum,x|} >= 21
   end
 
   def take_turn
@@ -122,7 +126,7 @@ class Player
       end
     else
       p 'hand: ' + @hand.to_s
-      'twist' unless won?
+      'twist' unless bust?
     end
   end
 end

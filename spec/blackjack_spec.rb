@@ -3,18 +3,18 @@ require_relative '../blackjack'
 
 describe Blackjack do
   it 'should create a full 52 deck of cards' do
-    game = Blackjack.new
+    game = Blackjack.new(2)
     expect(game.deck.size).to eq(52)
   end
 
   it 'remove a single card from the deck when drawn' do
-    game = Blackjack.new
+    game = Blackjack.new(2)
     game.deck.draw
     expect(game.deck.size).to eq(51)
   end
 
   it 'raises an EmptyDeckException when there are no cards left to draw' do
-    game = Blackjack.new
+    game = Blackjack.new(2)
     (1..52).each {game.deck.draw}
     expect{game.deck.draw}.to raise_error(EmptyDeckException)
   end
