@@ -5,11 +5,9 @@ import Tkinter as tk
 from simple_salesforce import Salesforce
 sf = Salesforce(username='mike@singletrack.com', password='U69gZ5RvoG32', security_token='6NJN9S7fVDPIDiV834P8oTJP')
 
-#class Application(tk.Tk):
 class Application(tk.Frame):
-    #def __init__(self):
     def __init__(self, master=None):
-        tk.Frame.__init__(self, master)
+        tk.Frame.__init__(self, master, bg='white')
         self.pack()
         self.createWidgets()
         #self.createTable()
@@ -26,6 +24,9 @@ class Application(tk.Frame):
         self.hi_there["command"] = self.say_hi
         self.hi_there.pack(side="top")
 
+        self.query_area = tk.Text(self, width=40 ,height=10, bg='white')
+        self.query_area.pack(side="top")
+
         self.QUIT = tk.Button(self, text="QUIT", fg="red",
                                             command=root.destroy)
         self.QUIT.pack(side="bottom")
@@ -37,15 +38,12 @@ class Application(tk.Frame):
             self.hi_list.insert(0, item)
         self.hi_list.pack()
 
-    #def createGrid(self):
-    #    for r in range(3):
-    #        for c in range(4):
-    #            tk.Label(self, text='helloo', borderwidth=1 ).grid(row=r, column=c)
-
     def say_hi(self):
         print("hi there, everyone!")
         out = sf.query("SELECT Id, Email FROM User")
         print(out)
+
+
 
 class SimpleTable(tk.Frame):
     def __init__(self, parent, rows=10, columns=2):
@@ -57,7 +55,7 @@ class SimpleTable(tk.Frame):
             current_row = []
             for column in range(columns):
                 label = tk.Label(self, text="%s/%s" % (row, column), 
-                                borderwidth=0, width=10)
+                                borderwidth=0, width=10, bg='white')
                 label.grid(row=row, column=column, sticky="nsew", padx=1, pady=1)
                 current_row.append(label)
             self._widgets.append(current_row)
@@ -70,6 +68,6 @@ class SimpleTable(tk.Frame):
         widget.configure(text=value)
 
 root = tk.Tk()
-#app = Application()
+#root.configure(bg='gray') <-- doesn't seem to have any effect...
 app = Application(master=root)
 app.mainloop()
