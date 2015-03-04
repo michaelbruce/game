@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ocra (1.3.4)
+    platypus (1.0.2)
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  ocra
+  platypus
