@@ -8,7 +8,9 @@ import javax.swing.JTextField
 import javax.swing.JTextArea
 import javax.swing.JTable
 import javax.swing.JSplitPane
+import javax.swing.JScrollPane
 import java.awt.FlowLayout
+import java.awt.GridBagConstraints
 
 class SoqlAdmin
 end
@@ -53,6 +55,10 @@ class MainWindow < JFrame
 
   def create_entry_panel
     panel = JPanel.new(FlowLayout.new(FlowLayout::CENTER))
+    scroll_pane = JScrollPane.new()
+    constraints = GridBagConstraints();
+    constraints.weightx = 1.0;
+    constraints.weighty = 1.0;
     input = JTextArea.new(3,20)
     input.setEditable true
     input.setText 'select * from Contacts'
