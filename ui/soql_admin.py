@@ -5,45 +5,72 @@ import Tkinter as tk
 from simple_salesforce import Salesforce
 sf = Salesforce(username='mike@singletrack.com', password='U69gZ5RvoG32', security_token='6NJN9S7fVDPIDiV834P8oTJP')
 
-class Application(tk.Frame):
+class SoqlAdmin(tk.Frame):
     def __init__(self, master=None):
         tk.Frame.__init__(self, master, bg='white')
-        self.pack()
+        self.grid(row=0, column=0, sticky="NSEW")
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+        #self.pack()
         self.createWidgets()
         #self.createTable()
-        #self.createList()
+        self.createList()
         #self.createGrid()
         #tk.Tk.__init__(self)
-        t = SimpleTable(self, 10,2)
-        t.pack(side="top", fill="x")
-        t.set(0,0,"Hello, world")
+        #t = SimpleTable(self, 10,2)
+        #t.pack(side="top", fill="x")
+        #t.set(0,0,"Hello, world")
 
     def createWidgets(self):
-        self.hi_there = tk.Button(self)
-        self.hi_there["text"] = "Hello World"
-        self.hi_there["command"] = self.say_hi
-        self.hi_there.pack(side="top")
+        self.query_area = tk.Text(self, width=80 ,height=10, bg='white')
+        #self.query_area.pack(side="top")
+        self.query_area.grid(in_=self, row=0, column=0, sticky="NSEW")
+        self.query_button = tk.Button(self, text="Query", fg='black', bg='white')
+        self.query_button["command"] = self.print_query
+        #self.query_button.pack(side="top")
+        self.query_button.grid(in_=self, row=1, column=0, stick="NS")
 
-        self.query_area = tk.Text(self, width=40 ,height=10, bg='white')
-        self.query_area.pack(side="top")
-
-        self.QUIT = tk.Button(self, text="QUIT", fg="red",
-                                            command=root.destroy)
-        self.QUIT.pack(side="bottom")
+        #self.QUIT = tk.Button(self, text="QUIT", fg="red",
+        #                                    command=root.destroy)
+        #self.QUIT.pack(side="bottom")
 
     def createList(self):
         li = 'Carl Andy Mark Jenny Richard Paul'.split()
-        self.hi_list = tk.Listbox(self)
+        self.results_area = tk.Listbox(self, bg='white', fg='black')
         for item in li:
-            self.hi_list.insert(0, item)
-        self.hi_list.pack()
+            self.results_area.insert(0, item)
+        #self.results_area.pack()
+        self.results_area.grid(in_=self, row=2, column=0, sticky="NSEW")
+
+        self.results_area_2 = tk.Listbox(self, bg='white', fg='black')
+        self.results_area_2.grid(in_=self, row=2, column=1, sticky="NSEW")
 
     def say_hi(self):
         print("hi there, everyone!")
         out = sf.query("SELECT Id, Email FROM User")
         print(out)
 
+    def print_query(self):
+        query_string = self.query_area.get('1.0', 'end')
+        raw_field_array = query_string.split('select')[1].split('from')[0].split(' ')
+        field_array = []
+        for field in raw_field_array:
+            if field != '': field.replace(',','')
+        query = sf.query(query_string)
+        print(query["records"][0].keys())
+        for item in query["records"]:
+            for field in item.keys():
+                print item[field]
+            self.results_area.insert(0, item["Email"])
 
+        #self.results_area.pack()
+        self.results_area.grid(in_=self, row=2, column=0, sticky="NSEW")
+
+
+class ListBoxTable(tk.Frame):
+    def __init__(sefl, parent, rows=10, columns=2):
+        tk.Frame.__init__(self, parent, background="black")
 
 class SimpleTable(tk.Frame):
     def __init__(self, parent, rows=10, columns=2):
@@ -69,5 +96,5 @@ class SimpleTable(tk.Frame):
 
 root = tk.Tk()
 #root.configure(bg='gray') <-- doesn't seem to have any effect...
-app = Application(master=root)
+app = SoqlAdmin(master=root)
 app.mainloop()
