@@ -14,7 +14,7 @@ class SoqlAdmin(tk.Frame):
         self.createList()
 
     def createQueryInputUI(self):
-        self.query_area = tk.Text(self, width=80 ,height=10, bg='white')
+        self.query_area = tk.Text(self, width=100 ,height=10, bg='white')
         self.query_area.insert('1.0', 'select Email, Name, Username from User')
         self.query_area.grid(in_=self, row=0, column=0, columnspan=2, sticky="NSEW")
         self.query_button = tk.Button(self, text="Query", fg='black', bg='white')
@@ -22,10 +22,13 @@ class SoqlAdmin(tk.Frame):
         self.query_button.grid(in_=self, row=1, column=0, columnspan=2, stick="NS")
 
     def createList(self):
+        self.results_area_list = []
         self.results_area = tk.Listbox(self, bg='white', fg='black')
         self.results_area.grid(in_=self, row=2, column=0, sticky="NSEW")
+        self.results_area_list.append(self.results_area)
         self.results_area_2 = tk.Listbox(self, bg='white', fg='black')
         self.results_area_2.grid(in_=self, row=2, column=1, sticky="NSEW")
+        self.results_area_list.append(self.results_area_2)
 
     def print_query(self):
         query_string = self.query_area.get('1.0', 'end')
@@ -34,13 +37,24 @@ class SoqlAdmin(tk.Frame):
         for field in raw_field_array:
             if field != '': field.replace(',','')
         query = sf.query(query_string)
-        for index, item in enumerate(query["records"]):
+        for item in query["records"]:
             fields = item.keys()
             fields.remove("attributes")
-            for field in fields:
-                self.results_area.insert(index, item[field])
+            for index, field in enumerate(fields):
+                if len(self.results_area_list) > index:
+                    self.results_area_list[index].insert(index, item[field])
+                else:
+                    new_results_area = tk.Listbox(self, bg='white', fg='black')
+                    #new_results_area.grid(in_=self, row=2, column=1, sticky="NSEW")
+                    self.results_area_list.append(new_results_area)
+                    self.results_area_list[index].insert(index, item[field])
 
-        self.results_area.grid(in_=self, row=2, column=0, sticky="NSEW")
+        for index, data_column in enumerate(self.results_area_list):
+            data_column.grid(in_=self, row=2, column=index, sticky="NSEW")
+
+        self.query_area.grid(in_=self, row=0, column=0, columnspan=len(self.results_area_list), sticky="NSEW")
+        self.query_button.grid(in_=self, row=1, column=0, columnspan=len(self.results_area_list), stick="NS")
+        #TODO remove after len
 
 
 class ListBoxTable(tk.Frame):
