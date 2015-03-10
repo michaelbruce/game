@@ -1,4 +1,5 @@
 import Tkinter as tk
+import tkMessageBox
 from simple_salesforce import Salesforce
 sf = Salesforce(username='mike@singletrack.com', password='U69gZ5RvoG32', security_token='6NJN9S7fVDPIDiV834P8oTJP')
 
@@ -41,7 +42,11 @@ class SoqlAdmin(tk.Frame):
         field_array = []
         for field in raw_field_array:
             if field != '': field.replace(',','')
-        query = sf.query(query_string)
+        try:
+            query = sf.query(query_string)
+        except Exception as e:
+            tkMessageBox.showinfo(title="Fuckkkk.", message=str(e))
+            return "break"
         for item in query["records"]:
             fields = item.keys()
             fields.remove("attributes")
