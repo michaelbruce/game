@@ -16,6 +16,9 @@ GEM
       atk (= 2.2.4)
       gdk_pixbuf2 (= 2.2.4)
       pango (= 2.2.4)
+    mini_portile (0.5.2)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     pango (2.2.4)
       cairo (>= 1.14.0)
       glib2 (= 2.2.4)
@@ -38,4 +41,5 @@ PLATFORMS
 
 DEPENDENCIES
   green_shoes
+  nokogiri
   rspec

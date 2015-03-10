@@ -18,6 +18,8 @@ class SoqlAdmin(tk.Frame):
         self.query_area = tk.Text(self, width=100 ,height=10, bg='white', fg='black')
         self.query_area.insert('1.0', 'select Id, Name, Username from User')
         self.query_area.grid(in_=self, row=0, column=0, columnspan=2, sticky="NSEW")
+        self.query_area.grid_rowconfigure(0, weight=1)
+        self.query_area.grid_columnconfigure(0, weight=1)
         self.query_button = tk.Button(self, text="Query", fg='black', bg='white')
         self.query_button["command"] = self.print_query
         self.query_button.grid(in_=self, row=1, column=0, columnspan=2, stick="NS")
@@ -28,6 +30,8 @@ class SoqlAdmin(tk.Frame):
         self.results_area = tk.Listbox(self, bg='white', fg='black', yscrollcommand=self.vsb.set)
         self.vsb.grid(in_=self, row=2, column=2)
         self.results_area.grid(in_=self, row=2, column=0, sticky="NSEW")
+        self.results_area.grid_rowconfigure(0, weight=2)
+        self.results_area.grid_columnconfigure(0, weight=2)
         self.results_area_list.append(self.results_area)
         self.results_area_2 = tk.Listbox(self, bg='white', fg='black', yscrollcommand=self.vsb.set)
         self.results_area_2.grid(in_=self, row=2, column=1, sticky="NSEW")
@@ -108,5 +112,28 @@ root = tk.Tk()
 root.grid_columnconfigure(0, weight=1)
 root.grid_rowconfigure(0, weight=1)
 root.resizable(True, False)
+
+root.tk.call('tk', 'windowingsystem')
+root.title("SoqlAdmin")
+#root.option_add('*tearOff', FALSE)
+menubar = tk.Menu(root, name='apple', title='ahoy')
+
+def hello():
+    print "hello!"
+
+apple = tk.Menu(menubar, name='apple', title='ahoy')
+apple.add_command(label="Open", command=hello)
+menubar.add_cascade(menu=apple)
+
+# create a pulldown menu, and add it to the menu bar
+filemenu = tk.Menu(menubar, tearoff=0)
+filemenu.add_command(label="Open", command=hello)
+filemenu.add_command(label="Save", command=hello)
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command=root.quit)
+menubar.add_cascade(label="File", menu=filemenu)
+#root['menu'] = menubar
+root.config(menu=menubar)
+
 app = SoqlAdmin(master=root)
 app.mainloop()
