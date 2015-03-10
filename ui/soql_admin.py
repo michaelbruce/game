@@ -8,7 +8,7 @@ class SoqlAdmin(tk.Frame):
         tk.Frame.__init__(self, master, bg='white')
         self.grid(row=0, column=0, sticky="NSEW")
         self.grid_rowconfigure(0, weight=1)
-        self.grid_rowconfigure(1, weight=1)
+        self.grid_rowconfigure(1, weight=2)
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=1)
         self.createQueryInputUI()
@@ -105,5 +105,8 @@ class SimpleTable(tk.Frame):
         widget.configure(text=value)
 
 root = tk.Tk()
+root.grid_columnconfigure(0, weight=1)
+root.grid_rowconfigure(0, weight=1)
+root.resizable(True, False)
 app = SoqlAdmin(master=root)
 app.mainloop()

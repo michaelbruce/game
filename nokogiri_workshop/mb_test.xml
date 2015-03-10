@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Research createDateTime="2015-02-16T17:24:28Z" language ="eng" researchID="WkC001085">
+<Product productID="WkC001085">
+<StatusInfo currentStatusIndicator="Yes" statusDateTime="2015-02-16T17:24:28Z" statusType="Published"/>
+<Source>
+<Organization primaryIndicator="Yes" type="SellSideFirm">
+<OrganizationID idType="Factset">Mediobanca_Securities</OrganizationID>
+<OrganizationName nameType="Display">Mediobanca Securities</OrganizationName>
+<PersonGroup>
+<PersonGroupMember primaryIndicator="No">
+<Person personID="111">
+<FamilyName><![CDATA[Vecchio]]></FamilyName>
+<GivenName><![CDATA[Massimo]]></GivenName>
+<DisplayName><![CDATA[Massimo Vecchio]]></DisplayName>
+<ContactInfo nature="Business">
+<Email><![CDATA[massimo.vecchio@mediobanca.com]]></Email>
+<Phone type ="Voice" location="Office">
+<CountryCode>0</CountryCode>
+<Number><![CDATA[+39 02 8829 541]]></Number>
+</Phone>
+</ContactInfo>
+</Person>
+</PersonGroupMember>
+<PersonGroupMember primaryIndicator="No">
+<Person personID="123">
+<FamilyName><![CDATA[Suárez]]></FamilyName>
+<GivenName><![CDATA[Javier]]></GivenName>
+<DisplayName><![CDATA[Javier Suárez]]></DisplayName>
+<ContactInfo nature="Business">
+<Email><![CDATA[javier.suarez@mediobanca.com]]></Email>
+<Phone type ="Voice" location="Office">
+<CountryCode>0</CountryCode>
+<Number><![CDATA[+39 02 8829 036]]></Number>
+</Phone>
+</ContactInfo>
+</Person>
+</PersonGroupMember>
+</PersonGroup>
+</Organization>
+</Source>
+<Content>
+<Title><![CDATA[Italian Wake Up Call - 16 February 2015]]></Title>
+<Synopsis><![CDATA[]]></Synopsis>
+<Abstract><![CDATA[]]></Abstract>
+<Resource resourceID="WkC_1085" language ="eng" sizeInBytes="458007" primaryIndicator="Yes">
+
+<Name>Italian Wake Up Call - 2015_February_16.PDF</Name>
+</Resource>
+</Content>
+<Context external="Yes">
+<IssuerDetails>
+<Issuer issuerType="Corporate" primaryIndicator="No" domicileCountryCode="IT">
+<IssuerName nameType="Display" NameValue="Exor"/>
+<IssuerFinancials issuerFinancialsType="PublisherDefined" displayName="MarketCapClass" publisherDefinedValue="">
+<FinancialValue estimateActual="Actual" />
+</IssuerFinancials>
+<SectorIndustry primaryIndicator="No" classificationType="PublisherDefined" name="HOLDINGS" code="" level="" focusLevel="Yes"/>
+<Rating rating="PublisherDefined" PublisherDefinedValue="">
+<RatingEntity ratingEntity="Publisher" />
+</Rating>
+<SecurityDetails>
+<Security primaryIndicator="No">
+<SecurityID idType="Bloomberg" idValue="EXO IM"/>
+<SecurityID idType="RIC" idValue="EXOR.MI "/>
+<SecurityID idType="NDGCODE" idValue="11942"/>
+<SecurityName>Exor</SecurityName>
+<AssetClass assetClass="Equity"/>
+<AssetType assetType="Stock"/>
+<SecurityFinancials securityFinancialsType="Price" publisherDefinedValue="" Currency="EUR">
+<FinancialValue estimateActual="Actual" />
+</SecurityFinancials>
+<SecurityFinancials securityFinancialsType="TargetPrice" publisherDefinedValue="" Currency="EUR">
+<FinancialValue estimateActual="Estimate" />
+</SecurityFinancials>
+</Security>
+</SecurityDetails>
+</Issuer>
+<Issuer issuerType="Corporate" primaryIndicator="No" domicileCountryCode="IT">
+<IssuerName nameType="Display" NameValue="Iren"/>
+<IssuerFinancials issuerFinancialsType="PublisherDefined" displayName="MarketCapClass" publisherDefinedValue="">
+<FinancialValue estimateActual="Actual" />
+</IssuerFinancials>
+<SectorIndustry primaryIndicator="No" classificationType="PublisherDefined" name="Utilities   " code="" level="" focusLevel="Yes"/>
+<Rating rating="PublisherDefined" PublisherDefinedValue="">
+<RatingEntity ratingEntity="Publisher" />
+</Rating>
+<SecurityDetails>
+<Security primaryIndicator="No">
+<SecurityID idType="NDGCODE" idValue="195026"/>
+<SecurityName>Iren</SecurityName>
+<AssetClass assetClass="Equity"/>
+<AssetType assetType="Stock"/>
+<SecurityFinancials securityFinancialsType="Price" publisherDefinedValue="" Currency="EUR">
+<FinancialValue estimateActual="Actual" />
+</SecurityFinancials>
+<SecurityFinancials securityFinancialsType="TargetPrice" publisherDefinedValue="" Currency="EUR">
+<FinancialValue estimateActual="Estimate" />
+</SecurityFinancials>
+</Security>
+</SecurityDetails>
+</Issuer>
+</IssuerDetails>
+<ProductDetails periodicalIndicator="No" publicationDateTime="2015-02-16T17:24:28Z" ProductName="Sector Report">
+
+
+
+
+
+
+
+<ProductCategory productCategory="Report"/>
+<ProductFocus focus="Issuer" primaryIndicator="Yes"/>
+</ProductDetails>
+<ProductClassifications>
+<Discipline disciplineType="Investment" researchApproach="Fundamental"/>
+<Subject subjectValue="MorningCall"/>
+<Country code="IT" primaryIndicator="No"/>
+<Country code="IT" primaryIndicator="No"/>
+<AssetClass assetClass="Equity"/>
+<AssetType assetType="Stock"/>
+<SecurityType securityType="Common"/>
+<MacroSector primaryIndicator="Yes" MacroSectorValue="Generalist"/>
+<DocumentTypeTag primaryIndicator="Yes" DocumentTypeTagValue="Morning Note"/>
+<LatestChgReco primaryIndicator="Yes" LatestChgRecoValue=""/>
+<PublishedTag primaryIndicator="Yes" PublishedTagValue="0"/>
+<BloombergFlag primaryIndicator="Yes" BloombergFlagValue="True"/>
+<KMFlag primaryIndicator="Yes" KMFlagValue="False"/>
+<EuropeanBanks primaryIndicator="Yes" EuropeanBanksValue=""/>
+<EuropeanInsurances primaryIndicator="Yes" EuropeanInsurancesValue=""/>
+</ProductClassifications>
+</Context>
+</Product>
+</Research>
