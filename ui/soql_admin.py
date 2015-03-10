@@ -14,21 +14,26 @@ class SoqlAdmin(tk.Frame):
         self.createList()
 
     def createQueryInputUI(self):
-        self.query_area = tk.Text(self, width=100 ,height=10, bg='white')
-        self.query_area.insert('1.0', 'select Email, Name, Username from User')
+        self.query_area = tk.Text(self, width=100 ,height=10, bg='white', fg='black')
+        self.query_area.insert('1.0', 'select Id, Name, Username from User')
         self.query_area.grid(in_=self, row=0, column=0, columnspan=2, sticky="NSEW")
         self.query_button = tk.Button(self, text="Query", fg='black', bg='white')
         self.query_button["command"] = self.print_query
         self.query_button.grid(in_=self, row=1, column=0, columnspan=2, stick="NS")
 
     def createList(self):
+        self.vsb = tk.Scrollbar(orient="vertical", command=self.OnVsb)
         self.results_area_list = []
-        self.results_area = tk.Listbox(self, bg='white', fg='black')
+        self.results_area = tk.Listbox(self, bg='white', fg='black', yscrollcommand=self.vsb.set)
+        self.vsb.grid(in_=self, row=2, column=2)
         self.results_area.grid(in_=self, row=2, column=0, sticky="NSEW")
         self.results_area_list.append(self.results_area)
-        self.results_area_2 = tk.Listbox(self, bg='white', fg='black')
+        self.results_area_2 = tk.Listbox(self, bg='white', fg='black', yscrollcommand=self.vsb.set)
         self.results_area_2.grid(in_=self, row=2, column=1, sticky="NSEW")
         self.results_area_list.append(self.results_area_2)
+
+    def OnVsb(self, *args): #vertical scrollback
+        for column in self.results_area_list: column.yview(*args)
 
     def print_query(self):
         query_string = self.query_area.get('1.0', 'end')
@@ -50,11 +55,23 @@ class SoqlAdmin(tk.Frame):
                     self.results_area_list[index].insert(index, item[field])
 
         for index, data_column in enumerate(self.results_area_list):
+            data_column.bind("<MouseWheel>", self.OnMouseWheel)
             data_column.grid(in_=self, row=2, column=index, sticky="NSEW")
+
+        #self.vsb = tk.Scrollbar(orient="vertical", command=self.OnVsb)
+        self.vsb.grid(in_=self, row=2, column=len(self.results_area_list)+1)
 
         self.query_area.grid(in_=self, row=0, column=0, columnspan=len(self.results_area_list), sticky="NSEW")
         self.query_button.grid(in_=self, row=1, column=0, columnspan=len(self.results_area_list), stick="NS")
         #TODO remove after len
+
+
+    def OnMouseWheel(self, event):
+        for column in self.results_area_list:
+            column.yview("scroll", event.delta,"units")
+        # this prevents default bindings from firing, which
+        # would end up scrolling the widget twice
+        return "break"
 
 
 class ListBoxTable(tk.Frame):
