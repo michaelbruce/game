@@ -35,22 +35,52 @@ class Chess
 end
 
 class Board
+
   def initialize
-    spaces = {}
-    (1..8).each{|column| (1..8).each{|row| spaces[[column,row]]}}
+    print_nogui
   end
 
-  def add_pieces
-    spaces[[0,5]] = Knight.new
+  def print_nogui
+    p '    A   B   C   D   E   F   G   H    '
+    p '  +' + ('-' * 31) + '+  '
+    p '8 |' + (' ' * 31) + '| 8'
+    p '7 |' + (' ' * 31) + '| 7'
+    p '6 |' + (' ' * 31) + '| 6'
+    p '5 |' + (' ' * 31) + '| 5'
+    p '4 |' + (' ' * 31) + '| 4'
+    p '3 |' + (' ' * 31) + '| 3'
+    p '2 |' + (' ' * 31) + '| 2'
+    p '1 |' + (' ' * 31) + '| 1'
+    p '  +' + ('-' * 31) + '+  '
+    p '    A   B   C   D   E   F   G   H    '
   end
 
-  def print_space space
-    column_key = ["A","B","C","D","E","F","G","H"]
-    p column_key.get(space.column).to_s + ' ' + space.row.to_s
+  def create_board_row
+    p '8 |' + (' ' * 31) + '| 8'
   end
+
+  def populate_board_cell(row, column)
+    pieces.each{|piece| piece.row == row && piece.column == column}
+  end
+
+  #def initialize
+  #  spaces = {}
+  #  (1..8).each{|column| (1..8).each{|row| spaces[[column,row]]}}
+  #end
+
+  #def add_pieces
+  #  spaces[[0,5]] = Knight.new
+  #end
+
+  #def print_space space
+  #  column_key = ["A","B","C","D","E","F","G","H"]
+  #  p column_key.get(space.column).to_s + ' ' + space.row.to_s
+  #end
 
 end
 
 tc = Chess.new
 p tc.pieces
 p "total: #{tc.pieces.size}"
+
+board = Board.new
