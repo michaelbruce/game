@@ -10,72 +10,72 @@ class Chess
   def setup_board
     pieces = []
     #Creating dark side
-    pieces << Knight.new('dark',2,1) #B1
-    pieces << Knight.new('dark',7,1) #G1
+    pieces << Knight.new('dark',1,2) #B1
+    pieces << Knight.new('dark',1,7) #G1
     pieces << Rook.new('dark',1,1) #A1
-    pieces << Rook.new('dark',8,1) #H1
-    pieces << Bishop.new('dark',3,1) #C1
-    pieces << Bishop.new('dark',6,1) #F1
-    pieces << Queen.new('dark',4,1) #D1
-    pieces << King.new('dark',5,1) #E1
-    (1..8).each {|num| pieces << Pawn.new('dark', num, 2)} #A2-H2
+    pieces << Rook.new('dark',1,8) #H1
+    pieces << Bishop.new('dark',1,3) #C1
+    pieces << Bishop.new('dark',1,6) #F1
+    pieces << Queen.new('dark',1,4) #D1
+    pieces << King.new('dark',1,5) #E1
+    (1..8).each {|num| pieces << Pawn.new('dark',2,num)} #A2-H2
 
     #Creating light side
-    pieces << Knight.new('light',2,8) #B8
-    pieces << Knight.new('light',7,8) #G8
-    pieces << Rook.new('light',1,8) #A8
+    pieces << Knight.new('light',8,2) #B8
+    pieces << Knight.new('light',8,7) #G8
+    pieces << Rook.new('light',8,1) #A8
     pieces << Rook.new('light',8,8) #H8
-    pieces << Bishop.new('light',3,8) #C8
-    pieces << Bishop.new('light',6,8) #F8
-    pieces << Queen.new('light',4,8) #D8
-    pieces << King.new('light',5,8) #E8
-    (1..8).each {|num| pieces << Pawn.new('light', num, 7)} #A7-H7
+    pieces << Bishop.new('light',8,3) #C8
+    pieces << Bishop.new('light',8,6) #F8
+    pieces << Queen.new('light',8,4) #D8
+    pieces << King.new('light',8,5) #E8
+    (1..8).each {|num| pieces << Pawn.new('light',7,num)} #A7-H7
     pieces
   end
 end
 
 class Board
 
-  def initialize
-    print_nogui
+  def initialize(chess_game)
+    @pieces = chess_game.pieces
   end
 
   def print_nogui
     p '    A   B   C   D   E   F   G   H    '
     p '  +' + ('-' * 31) + '+  '
-    p '8 |' + (' ' * 31) + '| 8'
-    p '7 |' + (' ' * 31) + '| 7'
-    p '6 |' + (' ' * 31) + '| 6'
-    p '5 |' + (' ' * 31) + '| 5'
-    p '4 |' + (' ' * 31) + '| 4'
-    p '3 |' + (' ' * 31) + '| 3'
-    p '2 |' + (' ' * 31) + '| 2'
-    p '1 |' + (' ' * 31) + '| 1'
+    create_board_row(8)
+    create_board_row(7)
+    create_board_row(6)
+    create_board_row(5)
+    create_board_row(4)
+    create_board_row(3)
+    create_board_row(2)
+    create_board_row(1)
     p '  +' + ('-' * 31) + '+  '
     p '    A   B   C   D   E   F   G   H    '
   end
 
-  def create_board_row
-    p '8 |' + (' ' * 31) + '| 8'
+  def create_board_row(row)
+    p "#{row} | " +
+      populate_board_cell(row,1) + '   ' +
+      populate_board_cell(row,2) + '   ' +
+      populate_board_cell(row,3) + '   ' +
+      populate_board_cell(row,4) + '   ' +
+      populate_board_cell(row,5) + '   ' +
+      populate_board_cell(row,6) + '   ' +
+      populate_board_cell(row,7) + '   ' +
+      populate_board_cell(row,8) +
+      " | #{row}"
   end
 
   def populate_board_cell(row, column)
-    pieces.each{|piece| piece.row == row && piece.column == column}
+    piece = @pieces.find{|piece| piece.row == row && piece.column == column}
+    if piece
+      piece.to_s
+    else
+      ' '
+    end
   end
-
-  #def initialize
-  #  spaces = {}
-  #  (1..8).each{|column| (1..8).each{|row| spaces[[column,row]]}}
-  #end
-
-  #def add_pieces
-  #  spaces[[0,5]] = Knight.new
-  #end
-
-  #def print_space space
-  #  column_key = ["A","B","C","D","E","F","G","H"]
-  #  p column_key.get(space.column).to_s + ' ' + space.row.to_s
-  #end
 
 end
 
@@ -83,4 +83,5 @@ tc = Chess.new
 p tc.pieces
 p "total: #{tc.pieces.size}"
 
-board = Board.new
+board = Board.new(tc)
+board.print_nogui

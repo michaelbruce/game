@@ -1,5 +1,5 @@
 class Piece
-  attr_reader :alignment
+  attr_reader :alignment, :row, :column
 
   def set_position(row,column)
     @row = row
@@ -11,6 +11,9 @@ class Piece
     set_position(row,column)
   end
 
+  def to_s
+    "-"
+  end
 
   def forward
     raise OffBoardMove, "this move would take the piece of the board" if @column == 8
@@ -33,6 +36,13 @@ class Piece
   end
 end
 
+class String
+  def colorize(color_code)
+    "\033[1;#{color_code};40m#{self}\e[0m"
+  end
+end
+
+
 class Knight < Piece
   def position
     ["A5","B6"]
@@ -40,6 +50,10 @@ class Knight < Piece
 
   def jump
     [3,2] # or use Piece methods?
+  end
+
+  def to_s
+    @alignment == 'dark' ? "K" : "k"
   end
 end
 
@@ -51,6 +65,10 @@ class Rook < Piece
   def jump
     [3,2] # or use Piece methods?
   end
+
+  def to_s
+    @alignment == 'dark' ? "R" : "r"
+  end
 end
 
 class Bishop < Piece
@@ -60,6 +78,10 @@ class Bishop < Piece
 
   def jump
     [3,2] # or use Piece methods?
+  end
+
+  def to_s
+    @alignment == 'dark' ? "B" : "b"
   end
 end
 
@@ -71,6 +93,10 @@ class Queen < Piece
   def jump
     [3,2] # or use Piece methods?
   end
+
+  def to_s
+    @alignment == 'dark' ? "Q" : "q"
+  end
 end
 
 class King < Piece
@@ -81,6 +107,10 @@ class King < Piece
   def jump
     [3,2] # or use Piece methods?
   end
+
+  def to_s
+    @alignment == 'dark' ? "K" : "k"
+  end
 end
 
 class Pawn < Piece
@@ -90,5 +120,10 @@ class Pawn < Piece
 
   def jump
     [3,2] # or use Piece methods?
+  end
+
+  def to_s
+    #@alignment == 'dark' ? "p".colorize(31) : "p"
+    @alignment == 'dark' ? "P" : "p"
   end
 end
