@@ -82,6 +82,12 @@ end
 tc = Chess.new
 p tc.pieces
 p "total: #{tc.pieces.size}"
+pawn1 = tc.pieces.find{|piece| piece.row == 2 && piece.column == 1}
+pawn1.up
+pawn1.right
+pawn2 = tc.pieces.find{|piece| piece.row == 7 && piece.column == 4}
+pawn2.down
+pawn2.down
 
 board = Board.new(tc)
 board.print_nogui
