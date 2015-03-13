@@ -43,29 +43,18 @@ class Board
   def print_nogui
     p '    A   B   C   D   E   F   G   H    '
     p '  +' + ('-' * 31) + '+  '
-    create_board_row(8)
-    create_board_row(7)
-    create_board_row(6)
-    create_board_row(5)
-    create_board_row(4)
-    create_board_row(3)
-    create_board_row(2)
-    create_board_row(1)
+    (1..8).each {|num| create_board_row(9 - num)}
     p '  +' + ('-' * 31) + '+  '
     p '    A   B   C   D   E   F   G   H    '
   end
 
   def create_board_row(row)
-    p "#{row} | " +
-      populate_board_cell(row,1) + '   ' +
-      populate_board_cell(row,2) + '   ' +
-      populate_board_cell(row,3) + '   ' +
-      populate_board_cell(row,4) + '   ' +
-      populate_board_cell(row,5) + '   ' +
-      populate_board_cell(row,6) + '   ' +
-      populate_board_cell(row,7) + '   ' +
-      populate_board_cell(row,8) +
-      " | #{row}"
+    out = "#{row} | "
+    (1..7).each {|num| out += populate_board_cell(row,num) + '   ' }
+    out += populate_board_cell(row, 8)
+    out += " | #{row}"
+    out
+    p out
   end
 
   def populate_board_cell(row, column)
