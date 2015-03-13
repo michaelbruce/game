@@ -4,33 +4,33 @@
     <StatusInfo currentStatusIndicator="Yes" statusDateTime="2015-02-16T17:24:28Z" statusType="Published"/>
     <Source>
       <Organization primaryIndicator="Yes" type="SellSideFirm">
-        <OrganizationID idType="Factset">Mediobanca_Securities</OrganizationID>
-        <OrganizationName nameType="Display">Mediobanca Securities</OrganizationName>
+        <OrganizationID idType="Factset">Company_Securities</OrganizationID>
+        <OrganizationName nameType="Display">Company Securities</OrganizationName>
         <PersonGroup>
           <PersonGroupMember primaryIndicator="No">
             <Person personID="111">
-              <FamilyName><![CDATA[Vecchio]]></FamilyName>
-              <GivenName><![CDATA[Massimo]]></GivenName>
-              <DisplayName><![CDATA[Massimo Vecchio]]></DisplayName>
+              <FamilyName><![CDATA[Green]]></FamilyName>
+              <GivenName><![CDATA[Marcus]]></GivenName>
+              <DisplayName><![CDATA[Marcus Green]]></DisplayName>
               <ContactInfo nature="Business">
-                <Email><![CDATA[massimo.vecchio@mediobanca.com]]></Email>
+                <Email><![CDATA[marcus.green@companypeople.com]]></Email>
                 <Phone type="Voice" location="Office">
                   <CountryCode>0</CountryCode>
-                  <Number><![CDATA[+39 02 8829 541]]></Number>
+                  <Number><![CDATA[+44 02 8622 111]]></Number>
                 </Phone>
               </ContactInfo>
             </Person>
           </PersonGroupMember>
           <PersonGroupMember primaryIndicator="No">
             <Person personID="123">
-              <FamilyName><![CDATA[Suárez]]></FamilyName>
-              <GivenName><![CDATA[Javier]]></GivenName>
-              <DisplayName><![CDATA[Javier Suárez]]></DisplayName>
+              <FamilyName><![CDATA[Reddy]]></FamilyName>
+              <GivenName><![CDATA[Cally]]></GivenName>
+              <DisplayName><![CDATA[Cally Reddy]]></DisplayName>
               <ContactInfo nature="Business">
-                <Email><![CDATA[javier.suarez@mediobanca.com]]></Email>
+                <Email><![CDATA[cally.reddy@companypeople.com]]></Email>
                 <Phone type="Voice" location="Office">
                   <CountryCode>0</CountryCode>
-                  <Number><![CDATA[+39 02 8829 036]]></Number>
+                  <Number><![CDATA[+39 02 7872 434]]></Number>
                 </Phone>
               </ContactInfo>
             </Person>
@@ -39,16 +39,16 @@
       </Organization>
     </Source>
     <Content>
-      <Title><![CDATA[Italian Wake Up Call - 16 February 2015]]></Title>
+      <Title><![CDATA[Wake Up Call - 30 February 2015]]></Title>
       <Synopsis><![CDATA[]]></Synopsis>
       <Abstract><![CDATA[]]></Abstract>
       <Resource resourceID="WkC_1085" language="eng" sizeInBytes="458007" primaryIndicator="Yes">
-        <Name>Italian Wake Up Call - 2015_February_16.PDF</Name>
+        <Name>Wake Up Call - 2015_February_16.PDF</Name>
       </Resource>
     </Content>
     <Context external="Yes">
       <IssuerDetails>
-        <Issuer issuerType="Corporate" primaryIndicator="No" domicileCountryCode="IT">
+        <Issuer issuerType="Corporate" primaryIndicator="No" domicileCountryCode="GB">
           <IssuerName nameType="Display" NameValue="Exor"/>
           <IssuerFinancials issuerFinancialsType="PublisherDefined" displayName="MarketCapClass" publisherDefinedValue="">
             <FinancialValue estimateActual="Actual"/>
@@ -59,9 +59,9 @@
           </Rating>
           <SecurityDetails>
             <Security primaryIndicator="No">
-              <SecurityID idType="Bloomberg" idValue="EXO IM"/>
-              <SecurityID idType="RIC" idValue="EXOR.MI "/>
-              <SecurityID idType="NDGCODE" idValue="11942"/>
+              <SecurityID idType="Bloomberg" idValue="PPI NY"/>
+              <SecurityID idType="RIC" idValue="PPIP.NY "/>
+              <SecurityID idType="NDGCODE" idValue="88321"/>
               <SecurityName>Exor</SecurityName>
               <AssetClass assetClass="Equity"/>
               <AssetType assetType="Stock"/>
@@ -75,7 +75,7 @@
           </SecurityDetails>
         </Issuer>
         <Issuer issuerType="Corporate" primaryIndicator="No" domicileCountryCode="IT">
-          <IssuerName nameType="Display" NameValue="Iren"/>
+          <IssuerName nameType="Display" NameValue="Chiikl"/>
           <IssuerFinancials issuerFinancialsType="PublisherDefined" displayName="MarketCapClass" publisherDefinedValue="">
             <FinancialValue estimateActual="Actual"/>
           </IssuerFinancials>
@@ -85,7 +85,7 @@
           </Rating>
           <SecurityDetails>
             <Security primaryIndicator="No">
-              <SecurityID idType="NDGCODE" idValue="195026"/>
+              <SecurityID idType="NDGCODE" idValue="128993"/>
               <SecurityName>Iren</SecurityName>
               <AssetClass assetClass="Equity"/>
               <AssetType assetType="Stock"/>
