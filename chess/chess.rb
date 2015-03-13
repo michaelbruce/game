@@ -46,6 +46,13 @@ class Board
     (1..8).each {|num| create_board_row(9 - num)}
     p '  +' + ('-' * 31) + '+  '
     p '    A   B   C   D   E   F   G   H    '
+    p (' ' * 37)
+    print_removed_pieces
+  end
+
+  def print_removed_pieces
+    removed_pieces = @pieces.find{|piece| piece.row == -1 && piece.column == -1}
+    removed_pieces.each {|piece| p piece.to_s } unless removed_pieces.nil?
   end
 
   def create_board_row(row)
@@ -66,6 +73,10 @@ class Board
     end
   end
 
+  def remove_piece(piece)
+    piece.remove_from_board
+  end
+
 end
 
 tc = Chess.new
@@ -77,6 +88,9 @@ pawn1.right
 pawn2 = tc.pieces.find{|piece| piece.row == 7 && piece.column == 4}
 pawn2.down
 pawn2.down
+pawn3 = tc.pieces.find{|piece| piece.row == 2 && piece.column == 4}
+pawn3.up
+pawn3.up
 
 board = Board.new(tc)
 board.print_nogui

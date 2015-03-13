@@ -11,6 +11,11 @@ class Piece
     set_position(row,column)
   end
 
+  def remove_from_board
+    @row = -1
+    @column = -1
+  end
+
   def to_s
     "-"
   end
