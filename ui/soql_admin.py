@@ -1,7 +1,7 @@
 import Tkinter as tk
 import tkMessageBox
 from simple_salesforce import Salesforce
-sf = Salesforce(username='mike@singletrack.com', password='U69gZ5RvoG32', security_token='6NJN9S7fVDPIDiV834P8oTJP')
+sf = Salesforce(username='', password='', security_token='')
 
 class SoqlAdmin(tk.Frame):
     def __init__(self, master=None):
