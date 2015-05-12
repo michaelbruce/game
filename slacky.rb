@@ -55,14 +55,36 @@ class Slacky
     @groups ||= get_objects('groups.list', 'groups')
   end
 
+  def channels
+    @channels ||= get_objects('channels.list', 'channels')
+  end
+
   def ims
     @ims ||= get_objects('im.list', 'ims')
   end
+
+  def history
+    @history ||= get_objects('im.history', 'messages')
+  end
+
+  # def search_messages
+  #   @search_result ||= get_objects('search.messages', 'messages')
+  # end
 
   def post_message(params)
     self.class.post('/chat.postMessage', body: params.merge({token: @token})).tap do |response|
       raise "error posting message: #{response.fetch('error', 'unknown error')}" unless response['ok']
     end
+  end
+
+  def pm_slackbot(message)
+    channel_id = self.class.post('/im.open', body: {token: @token, user: 'USLACKBOT'}).tap do |response|
+      raise "error opening pm channel: #{response.fetch('error', 'unknown error')}" unless response['ok']
+    end.fetch('channel')['id']
+
+    puts "channel_id: #{channel_id}"
+
+    post_message({channel: "#{channel_id}", text: message, username: 'mikepjb'})
   end
 
   ## translate a username into an IM id
