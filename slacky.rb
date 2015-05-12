@@ -3,6 +3,10 @@
 require 'httmultiparty'
 require 'trollop'
 
+# TODO More info on posting messages here:
+# https://api.slack.com/methods/chat.postMessage/test
+# https://github.com/rlister/slackcat/blob/master/bin/slackcat
+
 class Slacky
   include HTTMultiParty
   base_uri 'https://slack.com/api'
@@ -15,8 +19,9 @@ class Slacky
     puts 'Slacky alpha CLI'
     while input = STDIN.gets.chomp
       case input
-      when input.include?("/send")
-        puts "Sending message #{input} to AMA."
+      when /\/send/
+        puts "Sending message #{input.gsub('/send','')} to AMA."
+        post_message({channel: '#ama', text: "#{input.gsub('/send','')}", username: 'mikepjb'})
       when "/exit"
         puts "Goodbye."
         break;
@@ -41,6 +46,7 @@ class Slacky
     @users ||= get_objects('users.list', 'members')
   end
 
+  # get my username
   def auth
     @auth ||= get_objects('auth.test', 'user')
   end
@@ -53,6 +59,12 @@ class Slacky
     @ims ||= get_objects('im.list', 'ims')
   end
 
+  def post_message(params)
+    self.class.post('/chat.postMessage', body: params.merge({token: @token})).tap do |response|
+      raise "error posting message: #{response.fetch('error', 'unknown error')}" unless response['ok']
+    end
+  end
+
   ## translate a username into an IM id
   def im_for_user(username)
     user = users.find do |u|
@@ -63,9 +75,9 @@ class Slacky
     end
   end
 
-  def send(message, channel)
-    url = "https://slack.com/api/chat.postMessage"
-    full_test_url = "https://slack.com/api/chat.postMessage?token=<token!>&channel=%23ama&text=hi%20slacky&username=myusername&pretty=1"
-  end
+  # def send(message, channel)
+  #   url = "https://slack.com/api/chat.postMessage"
+  #   full_test_url = "https://slack.com/api/chat.postMessage?token=<token!>&channel=%23ama&text=hi%20slacky&username=myusername&pretty=1"
+  # end
 
 end
