@@ -1,0 +1,7 @@
+[package]
+name = "rust_game"
+version = "0.1.0"
+authors = ["Michael Bruce <michael.bruce@singletrack.com>"]
+
+[dependencies]
+time = "0.1"
