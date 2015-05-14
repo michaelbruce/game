@@ -11,8 +11,9 @@ class Slacky
   include HTTMultiParty
   base_uri 'https://slack.com/api'
 
-  def initialize(token)
+  def initialize(token='')
     @token = token
+    @token = read_config if @token == ''
   end
 
   def cli_ui
@@ -101,5 +102,10 @@ class Slacky
   #   url = "https://slack.com/api/chat.postMessage"
   #   full_test_url = "https://slack.com/api/chat.postMessage?token=<token!>&channel=%23ama&text=hi%20slacky&username=myusername&pretty=1"
   # end
+  def read_config
+    config = open(ENV['HOME']+'/.slacky')
+    config.readline.chomp
+  end
 
 end
+binding.pry
