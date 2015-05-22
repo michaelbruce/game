@@ -32,6 +32,11 @@ class Chess
     (1..8).each {|num| pieces << Pawn.new('light',7,num)} #A7-H7
     pieces
   end
+
+  def take_turn
+    puts "Select piece by position: "
+    gets.chomp
+  end
 end
 
 class Board
@@ -41,18 +46,18 @@ class Board
   end
 
   def print_nogui
-    p '    A   B   C   D   E   F   G   H    '
-    p '  +' + ('-' * 31) + '+  '
+    puts '    A   B   C   D   E   F   G   H    '
+    puts '  +' + ('-' * 31) + '+  '
     (1..8).each {|num| create_board_row(9 - num)}
-    p '  +' + ('-' * 31) + '+  '
-    p '    A   B   C   D   E   F   G   H    '
-    p (' ' * 37)
+    puts '  +' + ('-' * 31) + '+  '
+    puts '    A   B   C   D   E   F   G   H    '
+    puts (' ' * 37)
     print_removed_pieces
   end
 
   def print_removed_pieces
     removed_pieces = @pieces.find{|piece| piece.row == -1 && piece.column == -1}
-    removed_pieces.each {|piece| p piece.to_s } unless removed_pieces.nil?
+    removed_pieces.each {|piece| puts piece.to_s } unless removed_pieces.nil?
   end
 
   def create_board_row(row)
@@ -61,7 +66,7 @@ class Board
     out += populate_board_cell(row, 8)
     out += " | #{row}"
     out
-    p out
+    puts out
   end
 
   def populate_board_cell(row, column)
@@ -76,12 +81,11 @@ class Board
   def remove_piece(piece)
     piece.remove_from_board
   end
-
 end
 
 tc = Chess.new
 p tc.pieces
-p "total: #{tc.pieces.size}"
+puts "total: #{tc.pieces.size}"
 pawn1 = tc.pieces.find{|piece| piece.row == 2 && piece.column == 1}
 pawn1.up
 pawn1.right
@@ -94,3 +98,5 @@ pawn3.up
 
 board = Board.new(tc)
 board.print_nogui
+
+tc.take_turn

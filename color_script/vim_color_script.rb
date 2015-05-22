@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+print "Writing your theme file...\n"
+
+theme_name = "from-dusk-til-dawn"
+
+# GUI color definitions
+gui00 = "2b2b2b"
+gui01 = "272935"
+gui02 = "3a4055"
+gui03 = "5a647e"
+gui04 = "d4cfc9"
+gui05 = "e6e1dc"
+gui06 = "f4f1ed"
+gui07 = "f9f7f3"
+gui08 = "da4939"
+gui09 = "cc7833"
+gui0A = "ffc66d"
+gui0B = "a5c261"
+gui0C = "519f50"
+gui0D = "6d9cbe"
+gui0E = "b6b3eb"
+gui0F = "bc9458"
+
+# Terminal color definitions
+cterm00 = "00"
+cterm03 = "08"
+cterm05 = "07"
+cterm07 = "15"
+cterm08 = "01"
+cterm0A = "03"
+cterm0B = "02"
+cterm0C = "06"
+cterm0D = "04"
+cterm0E = "05"
+ctermc01 = "240"
+ctermc02 = "236"
+ctermc03 = "237"
+ctermc04 = "178"
+ctermc05 = "199"
+if exists('base16colorspace') && base16colorspace == "256"
+  cterm01 = "18"
+  cterm02 = "19"
+  cterm04 = "20"
+  cterm06 = "21"
+  cterm09 = "16"
+  cterm0F = "17"
+else
+  cterm01 = "10"
+  cterm02 = "11"
+  cterml02 = "0"
+  cterm04 = "12"
+  cterm06 = "13"
+  cterm09 = "09"
+  cterm0F = "14"
+endif
+

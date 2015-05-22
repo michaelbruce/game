@@ -12,4 +12,5 @@ fn main() {
     // use chrono::{UTC, Local, DateTime};
     // let utc: DateTime<UTC> = UTC::now();
     // let local: DateTime<Local> = Local::now();
+    let mut x = vec!["Hello"."world"];
 }
