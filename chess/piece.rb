@@ -1,6 +1,9 @@
 class Piece
   attr_reader :alignment, :row, :column
 
+  class OffBoardMove < Exception
+  end
+
   def set_position(row,column)
     @row = row
     @column = column
@@ -21,22 +24,22 @@ class Piece
   end
 
   def right
-    raise OffBoardMove, "this move would take the piece of the board" if @column == 8
+    raise OffBoardMove, "this move would take the piece #{@row},#{@column} of the board" if @column == 8
     @column += 1
   end
 
   def left
-    raise OffBoardMove, "this move would take the piece of the board" if @column == 1
+    raise OffBoardMove, "this move would take the piece #{@row},#{@column} of the board" if @column == 1
     @column -= 1
   end
 
   def down
-    raise OffBoardMove, "this move would take the piece of the board" if @row == 1
+    raise OffBoardMove, "this move would take the piece #{@row},#{@column} of the board" if @row == 1
     @row -= 1
   end
 
   def up
-    raise OffBoardMove, "this move would take the piece of the board" if @row == 8
+    raise OffBoardMove, "this move would take the piece #{@row},#{@column} of the board" if @row == 8
     @row += 1
   end
 end
