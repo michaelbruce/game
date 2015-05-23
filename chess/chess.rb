@@ -99,4 +99,11 @@ pawn3.up
 board = Board.new(tc)
 board.print_nogui
 
-tc.take_turn
+# tc.take_turn
+20.times {|number|
+  board = Board.new(tc)
+  board.print_nogui
+
+  pawn = tc.pieces.sample
+  pawn.up
+}
