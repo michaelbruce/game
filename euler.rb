@@ -15,6 +15,20 @@ def even_fibonacci_numbers
   fibonacci_sequence.inject{|sum,number| sum += number}
 end
 
+def largest_prime_factor
+  original_number = 600851475143
+  largest_factor = 1
+  #cut down the sequence before iterating?
+  #product results get stored in an array, iterated over to clean large chunks of potential prime factors
+  prime_numbers
+  (1..(original_number/2)).each {|number|
+    puts "#{largest_factor} #{number}"
+    largest_factor = number if original_number % number == 0
+  }
+  largest_factor
+end
+
 
 puts "Problem 1: #{multiples_of_three_and_five}"
 puts "Problem 2: #{even_fibonacci_numbers}"
+puts "Problem 3: #{largest_prime_factor}"
