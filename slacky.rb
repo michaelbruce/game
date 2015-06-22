@@ -108,4 +108,6 @@ class Slacky
   end
 
 end
-binding.pry
+
+# binding.pry
+# s = Slacky.new => pm_slackbot etc
